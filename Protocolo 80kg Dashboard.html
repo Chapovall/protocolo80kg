@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocolo 80kg - Painel Executivo de Recomposição</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0f172a',
+                        cardBg: '#1e293b',
+                        cardHover: '#334155',
+                        accentBlue: '#38bdf8',
+                        accentGreen: '#34d399',
+                        accentRed: '#f87171',
+                        accentYellow: '#fbbf24'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Chart.js for interactive charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .dial-btn.active {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            border-color: #38bdf8;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="bg-darkBg text-slate-100 min-h-screen flex flex-col justify-between antialiased selection:bg-sky-500 selection:text-white">
+
+    <!-- Top App Header -->
+    <header class="bg-cardBg/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50 px-4 py-3 shadow-lg">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20">
+                    <i class="fa-solid fa-heart-pulse text-white text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg sm:text-xl tracking-tight bg-gradient-to-r from-white via-slate-200 to-sky-400 bg-clip-text text-transparent">
+                        Protocolo 80kg <span class="text-xs font-normal px-2 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30 ml-2">MVP v2.4.3</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">Celo (53 anos) • Recomposição & Performance • Meta: 80.0 kg</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <span class="w-2 h-2 mr-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Sincronizado com Google Drive
+                </span>
+                <button onclick="openSimulationModal()" class="px-3.5 py-1.5 text-xs font-semibold bg-sky-600 hover:bg-sky-500 text-white rounded-lg transition-all shadow-md shadow-sky-600/20 flex items-center gap-1.5">
+                    <i class="fa-solid fa-plus"></i> Novo Registro
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-6 w-full flex-grow space-y-6">
+
+        <!-- Executive KPI Cards Grid -->
+        <section aria-label="Indicadores Executivos" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3">
+            <div class="bg-cardBg border border-slate-800 rounded-xl p-3.5 shadow-sm hover:border-slate-700 transition-all">
+                <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Peso Inicial</p>
+                <p class="text-xl sm:text-2xl font-bold text-slate-200 mt-1">96,0 <span class="text-xs font-normal text-slate-400">kg</span></p>
+                <p class="text-[10px] text-slate-500 mt-1">13/10/2026</p>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-xl p-3.5 shadow-sm hover:border-slate-700 transition-all">
+                <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Peso Atual</p>
+                <p class="text-xl sm:text-2xl font-bold text-sky-400 mt-1">89,2 <span class="text-xs font-normal text-slate-400">kg</span></p>
+                <p class="text-[10px] text-emerald-400 mt-1"><i class="fa-solid fa-arrow-down"></i> -0,9 kg últ.</p>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-xl p-3.5 shadow-sm hover:border-slate-700 transition-all">
+                <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Total Eliminado</p>
+                <p class="text-xl sm:text-2xl font-bold text-accentRed mt-1">-6,8 <span class="text-xs font-normal text-accentRed">kg</span></p>
+                <p class="text-[10px] text-slate-500 mt-1">Evolução acumulada</p>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-xl p-3.5 shadow-sm hover:border-slate-700 transition-all">
+                <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Meta Final</p>
+                <p class="text-xl sm:text-2xl font-bold text-slate-200 mt-1">80,0 <span class="text-xs font-normal text-slate-400">kg</span></p>
+                <p class="text-[10px] text-sky-400 mt-1">Alvo Fev 2027</p>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-xl p-3.5 shadow-sm hover:border-slate-700 transition-all">
+                <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Falta Eliminar</p>
+                <p class="text-xl sm:text-2xl font-bold text-yellow-400 mt-1">9,2 <span class="text-xs font-normal text-slate-400">kg</span></p>
+                <p class="text-[10px] text-slate-500 mt-1">43% Concluído</p>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-xl p-3.5 shadow-sm hover:border-slate-700 transition-all">
+                <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Gordura Atual</p>
+                <p class="text-xl sm:text-2xl font-bold text-slate-200 mt-1">27,1 <span class="text-xs font-normal text-slate-400">%</span></p>
+                <p class="text-[10px] text-emerald-400 mt-1"><i class="fa-solid fa-arrow-down"></i> -2,5% total</p>
+            </div>
+            <div class="bg-cardBg border border-slate-800 rounded-xl p-3.5 shadow-sm hover:border-slate-700 col-span-2 sm:col-span-1 transition-all">
+                <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Déficit Médio</p>
+                <p class="text-xl sm:text-2xl font-bold text-emerald-400 mt-1">1.171 <span class="text-xs font-normal text-slate-400">kcal</span></p>
+                <p class="text-[10px] text-slate-500 mt-1">Balanço calórico</p>
+            </div>
+        </section>
+
+        <!-- Interactive Dial / Tab Selector -->
+        <section aria-label="Navegador de Módulos" class="bg-cardBg border border-slate-800 rounded-2xl p-4 shadow-xl">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-4 pb-4 border-b border-slate-800">
+                <div>
+                    <h2 class="font-bold text-base sm:text-lg text-slate-100 flex items-center gap-2">
+                        <i class="fa-solid fa-compass text-sky-400"></i> Painel de Controle Interativo (Seletor)
+                    </h2>
+                    <p class="text-xs text-slate-400">Selecione o módulo abaixo para alternar instantaneamente a visualização e os gráficos em tempo real.</p>
+                </div>
+                <div class="grid grid-cols-2 sm:flex items-center gap-2 w-full md:w-auto">
+                    <button onclick="switchTab('weight')" id="btn-weight" class="dial-btn active px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-200 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-chart-line text-sky-400"></i> Curva Ponderal
+                    </button>
+                    <button onclick="switchTab('calories')" id="btn-calories" class="dial-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-200 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-fire text-emerald-400"></i> Balanço & Semáforo
+                    </button>
+                    <button onclick="switchTab('training')" id="btn-training" class="dial-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-200 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-person-biking text-yellow-400"></i> Treinos & Performance
+                    </button>
+                    <button onclick="switchTab('protocol')" id="btn-protocol" class="dial-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-slate-200 transition-all flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-syringe text-indigo-400"></i> Protocolo & Bio
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content Area -->
+            <div id="tab-content" class="min-h-[380px] transition-all"></div>
+        </section>
+
+    </main>
+
+    <!-- Simulation Modal -->
+    <div id="simulation-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-slate-700 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
+            <button onclick="closeSimulationModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+                <i class="fa-solid fa-gauge-high text-sky-400"></i> Simular Novo Registro
+            </h3>
+            <p class="text-xs text-slate-400 mb-4">Insira os dados para atualizar o painel.</p>
+            <form onsubmit="handleSimulation(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-medium text-slate-300 mb-1">Peso (kg)</label>
+                    <input type="number" step="0.05" id="sim-weight" placeholder="Ex: 88.9" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-sky-500">
+                </div>
+                <div class="flex justify-end gap-3 pt-2">
+                    <button type="button" onclick="closeSimulationModal()" class="px-4 py-2 text-xs font-semibold bg-slate-800 text-slate-300 rounded-xl">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 text-xs font-semibold bg-sky-600 text-white rounded-xl">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-cardBg border-t border-slate-800 py-4 text-center text-xs text-slate-500">
+        <p>Protocolo 80kg • Versão 2.4.3 • Sincronizado com Google Drive</p>
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        const weightData = [
+            { date: '13/10', weight: 96.0, fat: 29.6 },
+            { date: '20/10', weight: 94.65, fat: 29.2 },
+            { date: '27/10', weight: 93.0, fat: 28.6 },
+            { date: '03/11', weight: 92.95, fat: 28.6 },
+            { date: '11/11', weight: 90.1, fat: 27.5 },
+            { date: '13/11', weight: 89.2, fat: 27.1 }
+        ];
+        const trainingData = [
+            { date: '05/11', type: 'Caminhada Calçadão', dist: 6.54, duration: 87.1, kcal: 517 },
+            { date: '09/11', type: 'Caminhada Calçadão', dist: 5.43, duration: 82.3, kcal: 427 },
+            { date: '12/11', type: 'Ciclismo (Bike)', dist: 10.18, duration: 32.6, kcal: 378 }
+        ];
+        let chartInstance = null;
+
+        function switchTab(tab) {
+            document.querySelectorAll('.dial-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-${tab}`).classList.add('active');
+            const container = document.getElementById('tab-content');
+            
+            if (tab === 'weight') {
+                container.innerHTML = `
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                        <div class="lg:col-span-2 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                            <h3 class="font-semibold text-sm text-slate-200 mb-3"><i class="fa-solid fa-chart-line text-sky-400 mr-2"></i>Curva de Evolução Ponderal</h3>
+                            <div class="relative h-72 w-full"><canvas id="weightChart"></canvas></div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                                <h4 class="text-xs font-semibold text-slate-400 uppercase mb-2">Marcos da Jornada</h4>
+                                <ul class="space-y-2 text-xs text-slate-300">
+                                    <li class="flex justify-between border-b border-slate-800 pb-2"><span>Baseline</span><span class="font-bold text-white">96,0 kg</span></li>
+                                    <li class="flex justify-between border-b border-slate-800 pb-2"><span>Rompimento 90kg</span><span class="font-bold text-emerald-400">90,1 kg</span></li>
+                                    <li class="flex justify-between border-b border-slate-800 pb-2"><span>Atual</span><span class="font-bold text-sky-400">89,2 kg</span></li>
+                                    <li class="flex justify-between"><span>Alvo</span><span class="font-bold text-yellow-400">80,0 kg</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>`;
+                renderWeightChart();
+            } else if (tab === 'calories') {
+                container.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                            <span class="text-xs text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded">NO ALVO</span>
+                            <h4 class="text-lg font-bold text-white mt-2">Balanço Energético</h4>
+                            <p class="text-xs text-slate-400 mt-1">Média de déficit diário: <strong class="text-emerald-400">1.171 kcal</strong></p>
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800 md:col-span-2">
+                            <h4 class="font-semibold text-sm text-slate-200 mb-3"><i class="fa-solid fa-fire text-emerald-400 mr-2"></i>Gasto Calórico nos Treinos</h4>
+                            <div class="relative h-60 w-full"><canvas id="calorieChart"></canvas></div>
+                        </div>
+                    </div>`;
+                renderCalorieChart();
+            } else if (tab === 'training') {
+                container.innerHTML = `
+                    <div class="bg-slate-900/50 p-4 rounded-xl border border-slate-800">
+                        <h4 class="font-semibold text-sm text-slate-200 mb-3"><i class="fa-solid fa-list-check text-sky-400 mr-2"></i>Histórico de Treinos</h4>
+                        <table class="w-full text-left text-xs text-slate-300">
+                            <thead class="bg-slate-800 text-slate-400 uppercase text-[10px]">
+                                <tr><th class="p-2">Data</th><th class="p-2">Modalidade</th><th class="p-2">Distância</th><th class="p-2">Kcal</th></tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800">
+                                ${trainingData.map(t => `<tr><td class="p-2">${t.date}</td><td class="p-2">${t.type}</td><td class="p-2">${t.dist} km</td><td class="p-2 text-emerald-400">+${t.kcal} kcal</td></tr>`).join('')}
+                            </tbody>
+                        </table>
+                    </div>`;
+            } else if (tab === 'protocol') {
+                container.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-300">
+                        <div class="p-4 bg-slate-900/50 rounded-xl border border-slate-800">
+                            <p class="font-bold text-white mb-1"><i class="fa-solid fa-syringe text-indigo-400 mr-2"></i>Tirzepatida</p>
+                            <p>Dose atual: 3,5 mg/semana.</p>
+                        </div>
+                        <div class="p-4 bg-slate-900/50 rounded-xl border border-slate-800">
+                            <p class="font-bold text-white mb-1"><i class="fa-solid fa-heart-pulse text-emerald-400 mr-2"></i>Massa Magra</p>
+                            <p>61,7 kg (Bioimpedância 13/11).</p>
+                        </div>
+                    </div>`;
+            }
+        }
+
+        function renderWeightChart() {
+            const ctx = document.getElementById('weightChart').getContext('2d');
+            if (chartInstance) chartInstance.destroy();
+            chartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: weightData.map(d => d.date),
+                    datasets: [{ data: weightData.map(d => d.weight), borderColor: '#38bdf8', backgroundColor: 'rgba(56, 189, 248, 0.1)', fill: true, tension: 0.3 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { min: 78, max: 98 } } }
+            });
+        }
+
+        function renderCalorieChart() {
+            const ctx = document.getElementById('calorieChart').getContext('2d');
+            if (chartInstance) chartInstance.destroy();
+            chartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['05/11', '09/11', '12/11'],
+                    datasets: [{ data: [517, 427, 378], backgroundColor: '#34d399', borderRadius: 6 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+            });
+        }
+
+        function openSimulationModal() { document.getElementById('simulation-modal').classList.remove('hidden'); }
+        function closeSimulationModal() { document.getElementById('simulation-modal').classList.add('hidden'); }
+        function handleSimulation(e) { e.preventDefault(); alert("Simulação registrada!"); closeSimulationModal(); }
+
+        window.onload = () => switchTab('weight');
+    </script>
+</body>
+</html>
