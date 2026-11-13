@@ -35,7 +35,6 @@
         .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
     </style>
 </head>
 <body class="bg-darkBg text-slate-100 min-h-screen flex flex-col justify-between custom-scrollbar">
@@ -85,7 +84,7 @@
                 <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Peso Atual</span>
                 <div>
                     <div class="text-2xl font-extrabold text-sky-400">89,2 <span class="text-xs font-normal text-slate-400">kg</span></div>
-                    <span class="text-[10px] text-emerald-400 font-medium"><i class="fa-solid fa-arrow-down"><b>-0,8 kg</b> vs ant.</i></span>
+                    <span class="text-[10px] text-emerald-400 font-medium"><i class="fa-solid fa-arrow-down"></i> -0,8 kg vs ant.</span>
                 </div>
             </div>
 
@@ -140,7 +139,7 @@
             <div class="lg:col-span-2 bg-cardBg p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-sm font-semibold text-white flex items-center gap-2">
-                        <i class="fa-solid fa-chart-line text-sky-400"></i> Curva de Evolução Ponderal
+                        <i class="fa-solid fa-chart-line text-sky-400"></i> Curva de Evolução Ponderal (Real vs Meta)
                     </h2>
                     <span class="text-xs text-slate-400 bg-slate-900 px-2.5 py-1 rounded-lg border border-slate-800">Out / Nov 2026</span>
                 </div>
@@ -209,38 +208,40 @@
             </div>
         </div>
 
-        <!-- SEÇÃO 3: TREINOS & PERFORMANCE -->
-        <div id="secao-treinos" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- SEÇÃO 3: TREINOS & PERFORMANCE (HISTÓRICO GPS SPORT / ADIDAS RUNNING) -->
+        <div id="secao-treinos" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="bg-cardBg p-5 rounded-2xl border border-slate-800">
                 <h3 class="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-person-biking text-sky-400"></i> Ciclismo & Cardio
+                    <i class="fa-solid fa-route text-sky-400"></i> Histórico de Atividades & Rastreio
                 </h3>
-                <p class="text-xs text-slate-400 mb-4">Pedal estruturado de 10 km para recuperação ativa e condicionamento cardiovascular.</p>
-                <div class="text-xs font-semibold text-emerald-400 bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/20 text-center">
-                    Frequência: 3x na semana
+                <p class="text-xs text-slate-400 mb-4">Sessões integradas e registradas via iGPSPORT e Adidas Running.</p>
+                <div class="space-y-2.5">
+                    <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex justify-between items-center text-xs">
+                        <span class="text-slate-300"><i class="fa-solid fa-person-biking text-sky-400 mr-2"></i> Ciclismo (10.18 km / 18.7 km/h)</span>
+                        <span class="text-emerald-400 font-medium">iGPSPORT / Adidas</span>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex justify-between items-center text-xs">
+                        <span class="text-slate-300"><i class="fa-solid fa-person-walking text-emerald-400 mr-2"></i> Caminhada Calçadão (6.54 km)</span>
+                        <span class="text-sky-400 font-medium">Adidas Running</span>
+                    </div>
                 </div>
             </div>
-            <div class="bg-cardBg p-5 rounded-2xl border border-slate-800">
-                <h3 class="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-person-walking text-emerald-400"></i> Caminhada na Areia Fofa
-                </h3>
-                <p class="text-xs text-slate-400 mb-4">Reabilitação articular, flexão plantar e combate à fibrose no calçadão e costa de Janga.</p>
-                <div class="text-xs font-semibold text-sky-400 bg-sky-500/10 p-2.5 rounded-xl border border-sky-500/20 text-center">
-                    Foco: Estabilidade e Reabilitação
+
+            <div class="bg-cardBg p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-sm font-semibold text-white mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-dumbbell text-purple-400"></i> Suporte, Funcional & Academia
+                    </h3>
+                    <p class="text-xs text-slate-400 mb-4">Controle de sessões de fortalecimento e reabilitação articular na areia fofa.</p>
                 </div>
-            </div>
-            <div class="bg-cardBg p-5 rounded-2xl border border-slate-800">
-                <h3 class="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                    <i class="fa-solid fa-fish text-amber-400"></i> Surfcasting & Pesca
-                </h3>
-                <p class="text-xs text-slate-400 mb-4">Atividade de lazer e foco ao ar livre na costa de Janga com varas de 2.10m e 3.30m.</p>
-                <div class="text-xs font-semibold text-amber-400 bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/20 text-center">
-                    Manutenção de Equipamentos Ativa
+                <div class="p-3 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs flex items-center gap-2">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Módulo pronto para registro de cargas e frequência complementar.</span>
                 </div>
             </div>
         </div>
 
-        <!-- SEÇÃO 4: PROTOCOLO & BIO (VERSÃO PRIVADA COM ENANTATO + AVISO AMARELO) -->
+        <!-- SEÇÃO 4: PROTOCOLO & BIO (COM ENANTATO + ALERTA AMARELO DA TERÇA-FEIRA) -->
         <div id="secao-protocolo" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="bg-cardBg p-5 rounded-2xl border border-slate-800 flex flex-col justify-between">
                 <div>
@@ -265,12 +266,12 @@
                     </div>
                 </div>
 
-                <!-- ALERTA AMARELO DA PRÓXIMA APLICAÇÃO (EXCLUSIVO PRIVADO) -->
+                <!-- ALERTA AMARELO BASEADO NA APLICAÇÃO DE TERÇA-FEIRA -->
                 <div class="mt-4 p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs flex items-center gap-3">
                     <i class="fa-solid fa-triangle-exclamation text-base"></i>
                     <div>
-                        <span class="font-bold block">Próxima Aplicação de Tirzepatida:</span>
-                        <span>Terça-feira, 17/11/2026 — Dose de 3,5 mg agendada.</span>
+                        <span class="font-bold block">Próxima Aplicação (Base Terça-feira):</span>
+                        <span>Terça-feira, 17/11/2026 — Tirzepatida (3,5 mg) e ciclo integrado.</span>
                     </div>
                 </div>
             </div>
@@ -299,34 +300,30 @@
         Protocolo 80kg • Painel Executivo Privado • Desenvolvido para Acompanhamento Individual
     </footer>
 
-    <!-- SCRIPT DE NAVEGAÇÃO ENTRE ABAS E GRÁFICO -->
+    <!-- SCRIPT DE NAVEGAÇÃO E GRÁFICO AVANÇADO -->
     <script>
         function mudarAba(aba) {
-            // Esconde todas as seções
             document.getElementById('secao-evolucao').classList.add('hidden');
             document.getElementById('secao-balanco').classList.add('hidden');
             document.getElementById('secao-treinos').classList.add('hidden');
             document.getElementById('secao-protocolo').classList.add('hidden');
 
-            // Remove destaque de todos os botões
             document.getElementById('btn-evolucao').className = "px-4 py-2 rounded-lg text-xs font-medium transition text-slate-400 hover:text-white";
             document.getElementById('btn-balanco').className = "px-4 py-2 rounded-lg text-xs font-medium transition text-slate-400 hover:text-white";
             document.getElementById('btn-treinos').className = "px-4 py-2 rounded-lg text-xs font-medium transition text-slate-400 hover:text-white";
             document.getElementById('btn-protocolo').className = "px-4 py-2 rounded-lg text-xs font-medium transition text-slate-400 hover:text-white";
 
-            // Ativa a aba escolhida
             document.getElementById('secao-' + aba).classList.remove('hidden');
             document.getElementById('btn-' + aba).className = "px-4 py-2 rounded-lg text-xs font-medium transition bg-sky-500 text-darkBg shadow";
         }
 
-        // Configuração do Gráfico de Evolução Ponderal
         const ctx = document.getElementById('graficoEvolucao').getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
                 labels: ['13/Out', '20/Out', '27/Out', '03/Nov', '10/Nov', '13/Nov'],
                 datasets: [{
-                    label: 'Peso (kg)',
+                    label: 'Peso Real (kg)',
                     data: [96.0, 95.2, 93.8, 92.1, 90.0, 89.2],
                     borderColor: '#38bdf8',
                     backgroundColor: 'rgba(56, 189, 248, 0.1)',
@@ -334,7 +331,10 @@
                     fill: true,
                     tension: 0.3,
                     pointBackgroundColor: '#38bdf8',
-                    pointRadius: 4
+                    pointBorderColor: '#0f172a',
+                    pointBorderWidth: 2,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
                 }]
             },
             options: {
@@ -349,7 +349,7 @@
         });
 
         function abrirModalNovoRegistro() {
-            alert("Módulo de inserção rápida de dados sincronizado.");
+            alert("Módulo de registro individual sincronizado.");
         }
     </script>
 </body>
